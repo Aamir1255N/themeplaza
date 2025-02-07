@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer("category_id");
             $table->integer("downloads");
             $table->integer("likes");
+            $table->string("youtube_link",200);
             $table->timestamps();
         });
     }

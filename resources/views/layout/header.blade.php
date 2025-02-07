@@ -14,6 +14,7 @@
     <meta property="og:image" content="img/icon.png" />
     <meta property="og:url" content="/themes" />
     <meta property="og:site_name" content="Theme Plaza" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Themes | Theme Plaza</title>
     <link rel="icon" type="image/png" href="{{asset('assets/img/icone6b1.png?1501522454')}}" />
     <link href="{{asset('assets/css/bootstrap.mindb44.css?1544224878')}}" rel="stylesheet" />
