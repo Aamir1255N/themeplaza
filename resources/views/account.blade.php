@@ -37,24 +37,25 @@
                     </div>
                 </div>
 
-                <form method="post">
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">Site Settings</h4>
-                            <div class="form-group">
-                                <label for="nsfw-level">Default NSFW Level</label>
-                                <select class="form-control" name="nsfw_level" id="nsfw-level">
-                                    <option value="0" selected="">Safe</option>
-                                    <option value="1">Sketchy</option>
-                                    <option value="2">NSFW</option>
-                                </select>
-                            </div>
-                            <input type="hidden" name="token" value="28150c02"> <input class="btn btn-primary"
-                                type="submit" name="site_submit" value="Update">
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Site Settings</h4>
+                        <div class="form-group">
+                            <label for="nsfw-level">Default NSFW Level</label>
+                            <select class="form-control" name="nsfw_level" id="nsfw-level">
+                                <option value="0" selected="">Safe</option>
+                                <option value="1">Sketchy</option>
+                                <option value="2">NSFW</option>
+                            </select>
                         </div>
+                        <input type="hidden" name="token" value="28150c02"> <input class="btn btn-theme"
+                        type="submit" name="site_submit" value="Update">
                     </div>
-
+                </div>
+                
+                <form method="post" action='changepassword'>
+                    @csrf
                     <div class="card mb-4">
                         <div class="card-body">
                             <h4 class="card-title">Security Settings</h4>
@@ -62,11 +63,17 @@
                                 <label class="form-label" for="current-password">Current Password</label>
                                 <input class="form-control" id="current-password" type="password"
                                     name="current_password" placeholder="Type current password">
+                                    @error("error")
+                                        <div class="text-danger">{{$message}}</div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="new-password">New Password</label>
                                 <input class="form-control" id="new-password" type="password" name="password"
                                     placeholder="Type new password">
+                                    @error("password")
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
                                 <small class="form-text text-muted">Passwords must be 8 characters or longer and include
                                     both letters and numbers.</small>
                             </div>
@@ -74,8 +81,11 @@
                                 <label class="form-label" for="confirm-password">Confirm Password</label>
                                 <input class="form-control" id="confirm-password" type="password"
                                     name="confirm_password" placeholder="Confirm password">
+                                    @error("confirm_password")
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
-                            <input type="hidden" name="token" value="28150c02"> <input class="btn btn-primary"
+                            <input type="hidden" name="token" value="28150c02"> <input class="btn btn-theme"
                                 type="submit" name="security_submit" value="Update">
                         </div>
                     </div>

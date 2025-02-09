@@ -5,7 +5,7 @@
 <div class="container-fluid mt-4">
 	<div class="container">
 		<h2 class="display-4">
-			{{-- <img src="../download/33790/preview/icon.png" class="img-fluid" /> --}}
+			<img src="{{asset($data[0]->icon)}}" class="img-fluid" />
 			{{$data[0]->name}} </h2>
 		<p class="lead text-muted">{{$data[0]->short_description}}</p>
 
@@ -22,24 +22,24 @@
 						<div style="background-image: url({{asset('storage/'.$data[0]->qr)}});" data-qr-code></div>
 						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview)}}"
 							alt="{{$data[0]->name}}" />
-						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->icon)}}"
+						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview2)}}"
 							alt="{{$data[0]->name}}" />
 					</div>
 				</div>
 
 				<div class="mb-3">
 					<div class="btn-group d-flex mb-1" role="group">
-						<button type="button" class="btn btn-primary w-100" data-preview="preview">Uploaded
+						<button type="button" class="btn btn-theme w-100" data-preview="preview">Uploaded
 							Preview</button>
-						<button type="button" class="btn btn-primary w-100" data-preview="preview/generated">Generated
+						<button type="button" class="btn btn-theme w-100" data-preview="preview/generated">Generated
 							Preview</button>
 					</div>
 					<div class="btn-group d-flex mb-1" role="group">
-						<button type="button" class="btn btn-primary w-100" data-preview="preview/top">Top
+						<button type="button" class="btn btn-theme w-100" data-preview="preview/top">Top
 							Screen</button>
 					</div>
 					<div class="btn-group d-flex" role="group">
-						<button type="button" class="btn btn-primary w-100" data-preview="preview/bottom">
+						<button type="button" class="btn btn-theme w-100" data-preview="preview/bottom">
 							Bottom Screen
 						</button>
 					</div>
@@ -99,9 +99,9 @@
 						<div class="row">
 							<div class="col-lg">
 								{{-- <a href="../download/Hu%20Tao%20-%20Genshin%20Impact%20by%20Moggie%20(33790).zip"
-									class="btn btn-lg btn-block btn-primary"><i class="fa fa-fw fa-download"></i>
+									class="btn btn-lg btn-block btn-theme"><i class="fa fa-fw fa-download"></i>
 									Download</a> --}}
-									<a class="btn btn-lg btn-block btn-primary download-btn" data-id="{{ $data[0]->id }}"
+									<a class="btn btn-lg btn-block btn-theme download-btn" data-id="{{ $data[0]->id }}"
 										href="{{ asset($data[0]->body) }}" target="_blank" title="Download" data-toggle="tooltip" >
 										<span data-download-count="{{ $data[0]->id }}"></span>
 										{{-- <span >{{ $data[0]->downloads }}</span> --}}
@@ -115,7 +115,7 @@
 				<div class="card mb-3">
 					<div class="card-body">
 						{{-- <p>Let the Living Beware (tnbee mix) | Genshin Impact</p> --}}
-						<audio class="d-block mx-auto" src="{{asset($data[0]->audio)}}" style="width: 100%;" controls>Your
+						<audio class="d-block mx-auto" src="{{asset($data[0]->bgm)}}" style="width: 100%;" controls>Your
 							browser does not support the audio tag.</audio>
 					</div>
 				</div>
@@ -146,7 +146,7 @@
 						<div class="row tr">
 							<div class="col-12">
 								<a href="../themeseeea.html?query=tag:anime"><span
-										class="badge badge-primary">{{$data[0]->tags}}</span></a>
+										class="badge badge-primary bg-theme p-1">{{$data[0]->tags}}</span></a>
 								
 							</div>
 						</div>

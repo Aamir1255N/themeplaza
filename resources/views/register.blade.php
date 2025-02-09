@@ -74,7 +74,7 @@
 					@endif
 
 					<div class="form-group">
-						<input type="submit" class="btn btn-primary" name="submit" value="Register" />
+						<input type="submit" class="btn btn-theme" name="submit" value="Register" />
 					</div>
 				</form>
 				<script src="https://www.google.com/recaptcha/api.js" async defer></script>

@@ -24,14 +24,14 @@
                         </div>
                     </div>
                     <img src="{{asset($theme->preview)}}" class="img-fluid d-block mx-auto img-item-preview" alt=""
-                        style="background-image: url({{asset($theme->icon)}});" />
-                    <img src="{{asset($theme->icon)}}" class="img-fluid d-block mx-auto img-item-preview" alt=""
-                        style="background-image: url({{asset($theme->icon)}});" />
+                        style="background-image: url({{asset($theme->preview)}});" />
+                    <img src="{{asset($theme->preview2)}}" class="img-fluid d-block mx-auto img-item-preview" alt=""
+                        style="background-image: url({{asset($theme->preview2)}});" />
                 </a>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div class="mx-1">
-                    <a class="btn btn-sm btn-primary download-btn" data-id="{{ $theme->id }}"
+                    <a class="btn btn-sm btn-theme download-btn" data-id="{{ $theme->id }}"
                         href="{{ asset($theme->body) }}" target="_blank" title="Download" data-toggle="tooltip">
                         <span data-download-count="{{ $theme->id }}">{{ $theme->downloads }}</span>
                         <i class="fa fa-fw fa-download"></i>
@@ -92,7 +92,7 @@
                                 value="1" min="1" max="2157" />
 
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">Go</button>
+                                <button type="submit" class="btn btn-theme">Go</button>
                             </span>
                         </div>
                     </div>

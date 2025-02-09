@@ -65,4 +65,29 @@ class authentication extends Controller
         Auth::logout();
         return redirect('/');
     }
+    function changepassword(Request $req){
+        $validator = Validator::make($req->all(), [
+            "password"=>"required|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/",
+            "confirm_password"=>"required|same:password",
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput(); 
+        }
+        $user_id = Auth::id();
+        $data = User::whereId($user_id);
+        if($data->password==$req->current_password){
+            $data->password = $req->password;
+            $data->save();
+            return redirect('/account');
+        }
+        else{
+            return redirect()->back()
+                             ->withErrors(["error"=>"Your Current passoword is incorrect!"])
+                             ->withInput(); 
+        }
+        
+
+    }
 }

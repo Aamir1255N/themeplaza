@@ -16,49 +16,81 @@
     <meta property="og:site_name" content="Theme Plaza" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Themes | Theme Plaza</title>
-    <link rel="icon" type="image/png" href="{{asset('assets/img/icone6b1.png?1501522454')}}" />
-    <link href="{{asset('assets/css/bootstrap.mindb44.css?1544224878')}}" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logos/logo.png') }}" />
+    <link href="{{ asset('assets/css/bootstrap.mindb44.css?1544224878') }}" rel="stylesheet" />
+    <style>
+        * {
+            background: white !important;
+            color: #388a9f !important;
+        }
+        .bg-theme{
+            background: #388a9f !important;
+            color: white !important;
+        }
+        .btn-theme {
+            border:1px solid #388a9f;
+            background: #388a9f !important;
+            color: white !important;
+            transition: 0.5s ease;
+        }
+
+        .btn-theme:hover {
+            border:1px solid #388a9f;
+            background: #388a9f !important;
+            color: white !important;
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-faded">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/">Theme Plaza</a>
-        <div class="collapse navbar-collapse justify-content-between d-flex" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Left: Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('assets/img/logos/logo.png') }}" width="100px" height="100px" alt="">
+            </a>
 
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{auth()->check() ? 'upload': 'login'}}">Upload</a></li>
-                <li class="nav-item"><a class="nav-link" href="/faq">FAQ/Rules/Approval Info</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://discord.gg/Pz25PX5vr5">Join Our Discord!</a></li>
-            </ul>
+            <!-- Navbar Toggle Button (Bootstrap 4 Syntax) -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="profiles d-flex align-items-center">
-                @if (!auth()->check())
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="{{ auth()->check() ? 'upload' : 'login' }}">Upload</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/faq">FAQ/Rules/Approval Info</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://discord.gg/Pz25PX5vr5">Join Our Discord!</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/terms">Terms & Condition</a></li>
                 </ul>
-                @else
-                <div class=" dropdown">
-                    
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Well Come {{auth()->user()->name}}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-white" href="{{'/profile'}}">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-white" href="{{'/logout'}}">Logout</a>
-                    </div>
-                </div>
-                {{-- <b>WellCome <a href="{{'/profile'}}" class="text-white">{{auth()->user()->name}}</a></b> --}}
-                @endif
+
+                <!-- Right: Register/Login or Profile -->
+                <ul class="navbar-nav ">
+                    @if (!auth()->check())
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Well Come {{ auth()->user()->name }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ '/account' }}">Account</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ '/logout' }}">Logout</a>
+                            </div>
+                        </li>
+                    @endif
+                </ul>
             </div>
         </div>
     </nav>
+
 
 
     <div class="container-fluid mt-4">

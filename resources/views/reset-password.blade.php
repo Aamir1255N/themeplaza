@@ -27,7 +27,7 @@
                     <div class="h-captcha" data-sitekey="f24f426c-cffa-43c2-9970-8ca350a83f61"></div>
 
 
-                    <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
+                    <input type="submit" class="btn btn-theme" name="submit" value="Submit" />
 
                 </form>
             </div>

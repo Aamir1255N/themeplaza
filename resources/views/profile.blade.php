@@ -50,7 +50,7 @@
                     Recent Uploads
 
                     <div class="dropdown mt-3 mt-md-0">
-                        <a class="btn btn-primary btn-block dropdown-toggle" href="#" data-toggle="dropdown">
+                        <a class="btn btn-theme btn-block dropdown-toggle" href="#" data-toggle="dropdown">
                             View All
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
                                 <div class="mx-1">
-                                    <a class="btn btn-sm btn-primary"
+                                    <a class="btn btn-sm btn-theme"
                                         href="../download/Suitcase%20-%20Inanimate%20Insanity%20by%20aCsLuZ%20(98372).zip"
                                         target="_blank" title="Download" data-toggle="tooltip">2 <i
                                             class="fa fa-fw fa-download"></i></a>

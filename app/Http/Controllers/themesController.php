@@ -12,30 +12,29 @@ use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Illuminate\Support\Facades\Storage;
 use Endroid\QrCode\ErrorCorrectionLevel;
+use Illuminate\Support\Facades\Validator;
 
 class themesController extends Controller
 {
     public function store(Request $request)
     {
         // Validation rules
-        // $validator = Validator::make($request->all(), [
-        //     'category' => 'required|string',
-        //     'name' => 'required|string|max:32',
-        //     's_description' => 'required|string|max:64',
-        //     'description' => 'nullable|string',
-        //     'tags' => 'required|string',
-        //     'qr_url' => 'required|url',
-        //     'nsfw' => 'required|in:Safe,Sketchy,NSFW',
-        //     'v_link' => 'nullable|url',
-        //     'theme_body' => 'required|file',
-        //     'theme_bgm' => 'nullable|file',
-        //     'theme_preview' => 'required|image|max:500',
-        //     'theme_icon' => 'nullable|image|dimensions:width=48,height=48',
-        //     'audio' => 'nullable|file|mimes:mp3|max:2048', // 2MB max
-        // ]);
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+        $validator = Validator::make($request->all(), [
+            'category' => 'required|string',
+            'name' => 'required|string|max:32',
+            's_description' => 'required|string|max:64',
+            'description' => 'nullable|string',
+            'tags' => 'required|string',
+            'nsfw' => 'required',
+            'theme_body' => 'required|file',
+            'theme_bgm' => 'nullable|file',
+            'theme_preview' => 'required|image|max:500',
+            'theme_preview2' => 'required|image|max:500',
+            // 'theme_icon' => 'nullable|image|dimensions:width=48,height=48',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         // File uploads
         $destinationPath = 'uploads/themes';
 
@@ -44,10 +43,12 @@ class themesController extends Controller
         $themeBgmPath = $request->hasFile('theme_bgm') ? $request->file('theme_bgm')->move($destinationPath, time() . '_' . $request->file('theme_bgm')->getClientOriginalName()) : null;
         
         $themePreviewPath = $request->hasFile('theme_preview') ? $request->file('theme_preview')->move('uploads/themes/previews', time() . '_' . $request->file('theme_preview')->getClientOriginalName()) : null;
+
+        $themePreviewPath2 = $request->hasFile('theme_preview2') ? $request->file('theme_preview2')->move('uploads/themes/previews', time() . '_' . $request->file('theme_preview2')->getClientOriginalName()) : null;
         
         $themeIconPath = $request->hasFile('theme_icon') ? $request->file('theme_icon')->move('uploads/themes/icons', time() . '_' . $request->file('theme_icon')->getClientOriginalName()) : null;
         
-        $audioPath = $request->hasFile('audio') ? $request->file('audio')->move('uploads/themes/audio', time() . '_' . $request->file('audio')->getClientOriginalName()) : null;
+        // $audioPath = $request->hasFile('audio') ? $request->file('audio')->move('uploads/themes/audio', time() . '_' . $request->file('audio')->getClientOriginalName()) : null;
         
         
         
@@ -88,10 +89,10 @@ class themesController extends Controller
         $theme->body = $themeBodyPath;
         $theme->bgm = $themeBgmPath;
         $theme->preview = $themePreviewPath;
+        $theme->preview2 = $themePreviewPath2;
         $theme->icon = $themeIconPath;
         $theme->downloads = 0;
         $theme->likes = 0;
-        $theme->audio = $audioPath;
         $theme->uploader = Auth::user()->name; // Logged-in user
         $theme->save();
 

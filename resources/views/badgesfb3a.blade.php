@@ -119,7 +119,7 @@
 							<input type="number" name="page" class="form-control" placeholder="Type page number" value="1" min="1" max="1" />
 							
 							<span class="input-group-btn">
-								<button type="submit" class="btn btn-primary">Go</button>
+								<button type="submit" class="btn btn-theme">Go</button>
 							</span>
 						</div>
 					</div>
