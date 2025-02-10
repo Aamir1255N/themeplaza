@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Rules\Recaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
-use App\Rules\Recaptcha;
 // use Illuminate\Auth\Events\Registered;
 
 class authentication extends Controller
@@ -67,27 +68,31 @@ class authentication extends Controller
     }
     function changepassword(Request $req){
         $validator = Validator::make($req->all(), [
-            "password"=>"required|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/",
-            "confirm_password"=>"required|same:password",
+            "password" => "required|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/|regex:/[\W]/",
+            "confirm_password" => "required|same:password",
+            "current_password" => "required",
         ]);
+    
         if ($validator->fails()) {
             return redirect()->back()
                              ->withErrors($validator)
-                             ->withInput(); 
+                             ->withInput();
         }
-        $user_id = Auth::id();
-        $data = User::whereId($user_id);
-        if($data->password==$req->current_password){
-            $data->password = $req->password;
-            $data->save();
-            return redirect('/account');
-        }
-        else{
+    
+        $user = Auth::user();
+    
+        // Check if current password is correct
+        if (!Hash::check($req->current_password, $user->password)) {
             return redirect()->back()
-                             ->withErrors(["error"=>"Your Current passoword is incorrect!"])
-                             ->withInput(); 
+                             ->withErrors(["error" => "Your current password is incorrect!"])
+                             ->withInput();
         }
-        
-
+    
+        // Update password securely
+        $user->password = Hash::make($req->password);
+        $user->save();
+    
+        return redirect('/account')->with("success", "Password changed successfully!");
     }
+    
 }

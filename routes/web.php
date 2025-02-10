@@ -13,17 +13,17 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // });
 
 // Auth::routes(['verify' => true]);
-Route::get('/',[HomeController::class,"index"]);
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/themedetails/{id}',[HomeController::class,"themedetails"]);
 Route::view('/login', 'log-in');
 Route::view('/register', 'register');
 Route::view('/splashes', 'splashes2cb8');
-Route::view('/upload', 'upload')->Middleware("profile");;
+Route::get('/upload',[HomeController::class,"uploads"])->Middleware("profile");;
 Route::view('/faq', 'faq');
 Route::view('/contact', 'contact');
-Route::view('/profile', 'profile')->Middleware("profile");
+Route::get('/profile', [HomeController::class,"profile"])->Middleware("profile");
 Route::view('/terms', 'terms');
-Route::view('/account', 'account')->Middleware("profile");;
+Route::get('/account',[HomeController::class,"account"])->Middleware("profile");;
 Route::view('/reset-password', 'reset-password');
 Route::post('/loginSubmit',[authentication::class,'login']);
 Route::post('/registerSubmit',[authentication::class,'register']);
@@ -34,7 +34,8 @@ Route::fallback(function () {
 Route::post('/SubmitThemes',[themesController::class,'store']);
 Route::post('/changepassword',[authentication::class,'changepassword']);
 
-
+Route::post("/createcategory",[themesController::class,"createcategory"]);
+Route::get("/category/{id}/delete",[themesController::class,"deletecategory"]);
 // Email Verification Routes
 // Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
 // Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');

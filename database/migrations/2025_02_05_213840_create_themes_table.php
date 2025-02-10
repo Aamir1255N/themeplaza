@@ -15,20 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string("name",100);
             $table->string("short_description",200);
-            $table->string("description",1000);
+            $table->string("description",1000)->nullable();
             $table->string("tags",100);
             $table->string("nsfw_Level",100);
             $table->string("qr",100);
             $table->string("body",100);
-            $table->string("bgm",100);
+            $table->string("bgm",100)->nullable();
             $table->string("preview",100);
             $table->string("preview2",100);
-            $table->string("icon",100);
+            $table->string("icon",100)->nullable();
             $table->string("uploader",100);
             $table->integer("category_id");
             $table->integer("downloads");
             $table->integer("likes");
-            $table->string("youtube_link",200);
+            $table->string("youtube_link",200)->nullable();
             $table->timestamps();
         });
     }

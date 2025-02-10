@@ -7,12 +7,12 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no"/>
     <meta property="og:title" content="Badges"/>
-    <meta property="og:description" content="Theme Plaza."/>
+    <meta property="og:description" content="High Flying Themes."/>
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="img/icon.png"/>
     <meta property="og:url" content="/badges?query=user:AwkwardLemon76"/>
-    <meta property="og:site_name" content="Theme Plaza"/>
-    <title>Badges | Theme Plaza</title>
+    <meta property="og:site_name" content="High Flying Themes"/>
+    <title>Badges | High Flying Themes</title>
     <link rel="icon" type="image/png" href="img/icone6b1.png?1501522454"/>
     <link href="css/bootstrap.mindb44.css?1544224878" rel="stylesheet"/>
 </head>
@@ -22,7 +22,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="index.html">Theme Plaza</a>
+    <a class="navbar-brand" href="index.html">High Flying Themes</a>
     <div class="collapse navbar-collapse justify-content-between d-flex" id="navbar">
 
         <ul class="navbar-nav">
@@ -138,8 +138,8 @@
 						<a href="contact.html">Contact</a> &middot;
 						<a href="terms.html">Terms of Service</a>
 						<br />
-						&copy; 2025 Theme Plaza<br />
-                        <span class="text-muted">Theme Plaza is in no way affiliated with Nintendo or any associated parties.<br />
+						&copy; 2025 High Flying Themes<br />
+                        <span class="text-muted">High Flying Themes is in no way affiliated with Nintendo or any associated parties.<br />
                             Copyrighted material can be reported using the email in our <a href="terms.html">Terms of Service</a>.</span>
 					</small>
 				</p>

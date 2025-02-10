@@ -6,8 +6,8 @@
             <a href="/contact">Contact</a> &middot;
             <a href="/terms">Terms of Service</a>
             <br />
-            &copy; 2025 Theme Plaza<br />
-            <span class="text-muted">Theme Plaza is in no way affiliated with Nintendo or any associated
+            &copy; 2025 High Flying Themes<br />
+            <span class="text-muted">High Flying Themes is in no way affiliated with Nintendo or any associated
                 parties.<br />
                 Copyrighted material can be reported using the email in our <a href="/terms">Terms of
                     Service</a>.</span>
@@ -107,6 +107,20 @@
     });
 });
 
+</script>
+<script>
+    let category = document.getElementById('category-feild');
+async function getcategory() {
+    let raw = await fetch("{{url('/api/category')}}");
+    let data = await raw.json();
+    data.forEach(element => {
+        let option = document.createElement('option');
+        option.value = element.id;
+        option.innerHTML = element.name;
+        category.appendChild(option);
+    });
+}
+getcategory();
 </script>
 </body>
 

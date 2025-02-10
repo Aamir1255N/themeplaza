@@ -1,6 +1,11 @@
 @extends('layout.master')
 @section('content')
-
+@if (session('success'))
+<div id="alerts" class="alert alert-success d-flex align-items-center justify-content-between">
+    <b>{{session('success')}}</b>
+    <button class="btn btn-success" data-dismiss="alert">&times;</button>
+</div>
+@endif
 <div class="container-fluid mt-4">
     <div class="container">
         <h2 class="display-4">
@@ -20,16 +25,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-3 text-center justify-content-around align-items-center d-flex">
-                                <a href="/profile/samee">
+                                <a href="/profile">
                                     <img class="img-fluid rounded-circle"
-                                        src="https://www.gravatar.com/avatar/9946aebec2b08f9c33b9b443f00603f3?d=identicon&amp;s=48"
-                                        alt="samee">
+                                        src="https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png"
+                                        alt="{{auth()->user()->name}}">
                                 </a>
                             </div>
                             <div class="col-9 d-flex align-items-center">
                                 <div>
                                     <h3>
-                                        <a href="/profile/samee">{{auth()->user()->name}} </a>
+                                        <a href="/profile">{{auth()->user()->name}} </a>
                                     </h3>
                                 </div>
                             </div>
@@ -97,10 +102,11 @@
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h4 class="card-title">Galleries</h4>
-                        <form method="post">
+                        <h4 class="card-title">Category</h4>
+                        <form method="post" action='createcategory'>
+                            @csrf
                             <div class="input-group">
-                                <input class="form-control" id="gallery-name" type="text" name="gallery_name"
+                                <input class="form-control" id="gallery-name" type="text" name="category_name"
                                     placeholder="Type name" maxlength="50" required="">
                                 <span class="input-group-append">
                                     <button class="btn btn-success" type="submit" name="gallery_create_submit"
@@ -113,13 +119,28 @@
                                         </svg><!-- <i class="fa fa-fw fa-plus"></i> --></button>
                                 </span>
                             </div>
-                            <input type="hidden" name="token" value="28150c02">
                         </form>
-
-
                     </div>
                 </div>
 
+                <div class="card my-3">
+                    <div class="card-body ">
+                        <table class="table table-hover table-striped table-bordered">
+                            <tr>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                            @foreach ($categories as $category)
+                            <tr>
+                                <td>{{$category->name}}</td>
+                                <td>
+                                    <a href="/category/{{$category->id}}/delete" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
                 <div class="card bg-success mb-3">
                     <div class="card-body ">
                         <h4 class="card-title">Accepted Submissions</h4>

@@ -5,7 +5,9 @@
 <div class="container-fluid mt-4">
 	<div class="container">
 		<h2 class="display-4">
+			@if ($data[0]->icon !== null)
 			<img src="{{asset($data[0]->icon)}}" class="img-fluid" />
+			@endif
 			{{$data[0]->name}} </h2>
 		<p class="lead text-muted">{{$data[0]->short_description}}</p>
 
@@ -19,7 +21,7 @@
 			<div class="col-md-6">
 				<div class="card mb-3">
 					<div class="card-body text-center" style="position: relative;">
-						<div style="background-image: url({{asset('storage/'.$data[0]->qr)}});" data-qr-code></div>
+						<div style="background-image: url({{asset('storage/'.$data[0]->qr)}}) !important; background-repeat: no-repeat !important; background-position:center !important; background-size:contain !important;" data-qr-code></div>
 						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview)}}"
 							alt="{{$data[0]->name}}" />
 						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview2)}}"
@@ -111,7 +113,8 @@
 						</div>
 					</div>
 				</div>
-
+				@if ($data[0]->bgm != null)
+					
 				<div class="card mb-3">
 					<div class="card-body">
 						{{-- <p>Let the Living Beware (tnbee mix) | Genshin Impact</p> --}}
@@ -119,17 +122,22 @@
 							browser does not support the audio tag.</audio>
 					</div>
 				</div>
+				@endif
 
 
 				<div class="card mb-3">
 					<div class="card-body py-0">
 						<div class="row tr">
 							<div class="col-6">Category</div>
-							<div class="col-6">Themes</div>
+							@php
+							use App\Models\category;
+							$category = category::where("id",$data[0]->category_id)->get();
+							@endphp
+							<div class="col-6">{{$category[0]->name}}</div>
 						</div>
 						<div class="row tr">
 							<div class="col-6">Uploader</div>
-							<div class="col-6"><a href="../profile/Moggie.html">{{$data[0]->uploader}}</a></div>
+							<div class="col-6"><a href="#">{{$data[0]->uploader}}</a></div>
 						</div>
 						<div class="row tr">
 							<div class="col-6">Date</div>

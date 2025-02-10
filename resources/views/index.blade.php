@@ -19,13 +19,13 @@
                     <div class="d-flex justify-content-around align-items-center" data-qr-code>
                         <div class="text-center">
                             <p>Scan QR Code</p>
-                            <p><img width="180" src="{{asset('storage/'.$theme->qr)}}" src="QR%20Code.html" /></p>
+                            <p><img width="180" src="{{asset('storage/'.$theme->qr)}}"  /></p>
                             <p>Click for more details</p>
                         </div>
                     </div>
-                    <img src="{{asset($theme->preview)}}" class="img-fluid d-block mx-auto img-item-preview" alt=""
+                    <img src="{{asset($theme->preview)}}" class="img-fluid d-block mx-auto img-item-preview" style="height:150px !important;" alt=""
                         style="background-image: url({{asset($theme->preview)}});" />
-                    <img src="{{asset($theme->preview2)}}" class="img-fluid d-block mx-auto img-item-preview" alt=""
+                    <img src="{{asset($theme->preview2)}}" class="img-fluid d-block mx-auto img-item-preview" style="height:150px !important;" alt=""
                         style="background-image: url({{asset($theme->preview2)}});" />
                 </a>
             </div>
@@ -33,7 +33,7 @@
                 <div class="mx-1">
                     <a class="btn btn-sm btn-theme download-btn" data-id="{{ $theme->id }}"
                         href="{{ asset($theme->body) }}" target="_blank" title="Download" data-toggle="tooltip">
-                        <span data-download-count="{{ $theme->id }}">{{ $theme->downloads }}</span>
+                        <span data-download-count="{{ $theme->id }}" style="background: transparent !important; color:white !important;">{{ $theme->downloads }}</span>
                         <i class="fa fa-fw fa-download"></i>
                     </a>
                 </div>
@@ -47,8 +47,8 @@
                 </div>
 
                 <div class="mx-1" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"
-                    data-toggle="tooltip" title="Savanna7SMA">
-                    <a href="profile/Savanna7SMA.html">
+                    data-toggle="tooltip" title="{{ $theme->uploader }}">
+                    <a href="#">
                         <i class="fa fa-fw fa-user"></i> {{ $theme->uploader }}</a>
                 </div>
             </div>
@@ -56,7 +56,9 @@
     </div>
     @endforeach
 </div>
+{{ $themes->links('vendor.pagination.custom') }}
 
+{{-- 
 <div class="row">
     <div class="col-md-6 offset-md-3 d-flex justify-content-between align-items-center">
 
@@ -102,5 +104,5 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Psy\Output\Theme;
 use App\Models\Themes;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
@@ -78,14 +79,14 @@ class themesController extends Controller
         // echo "<img src='$qrFile' width='150px' height='150px'/>";
         // Save theme to database
         $theme = new Themes();
-        $theme->category_id = 0;
+        $theme->category_id = $request->category;
         $theme->name = $request->name;
         $theme->short_description = $request->s_description;
         $theme->description = $request->description;
         $theme->tags = $request->tags;
         $theme->qr = $qrFile;
         $theme->nsfw_level = $request->nsfw;
-        $theme->youtube_link = $request->v_link;
+        $theme->youtube_link = $request->v_link ?? null;
         $theme->body = $themeBodyPath;
         $theme->bgm = $themeBgmPath;
         $theme->preview = $themePreviewPath;
@@ -136,5 +137,15 @@ class themesController extends Controller
       $theme->save();
 
       return response()->json(['likes' => $theme->likes]); // AJAX ke liye response
+  }
+  function createcategory(Request $req){
+    $category = new category;
+    $category->name = $req->category_name;
+    $category->save();
+    return redirect('/account');
+  }
+  function deletecategory($id){
+    category::find($id)->delete();
+    return redirect('/account')->with(["success"=>"Category deleted successfully!"]);
   }
 }

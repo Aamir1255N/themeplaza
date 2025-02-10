@@ -9,13 +9,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no" />
     <meta property="og:title" content="Themes" />
-    <meta property="og:description" content="Theme Plaza." />
+    <meta property="og:description" content="High Flying Themes." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="img/icon.png" />
     <meta property="og:url" content="/themes" />
-    <meta property="og:site_name" content="Theme Plaza" />
+    <meta property="og:site_name" content="High Flying Themes" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Themes | Theme Plaza</title>
+    <title>Themes | High Flying Themes</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logos/logo.png') }}" />
     <link href="{{ asset('assets/css/bootstrap.mindb44.css?1544224878') }}" rel="stylesheet" />
     <style>

@@ -45,7 +45,7 @@
                     upload, they will be accepted automatically.</p>
                 <p>If one of your items is rejected, your Trusted status will be removed and you will have to upload 5
                     more items to get accepted again.</p>
-                <p>Theme Plaza reserves the right to reject your theme for any reason, including but not limited to
+                <p>High Flying Themes reserves the right to reject your theme for any reason, including but not limited to
                     breaches of our <a style="color: #4af;" href="terms.html">Terms of Service</a>.</p>
                 </p>
             </div>

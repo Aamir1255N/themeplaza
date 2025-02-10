@@ -50,7 +50,7 @@
                     </div>
                 
                     <input type="submit" name="submit" class="btn btn-theme" value="Login" />
-                    <a class="btn btn-info" href="{{ url('/reset-password') }}">Forgot Password</a>
+                    {{-- <a class="btn btn-info" href="{{ url('/reset-password') }}">Forgot Password</a> --}}
               
                 </form>
                 

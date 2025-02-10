@@ -36,8 +36,8 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3>Statistics</h3>
-                        Upload Count: 0<br />
-                        Download Count: 0<br />
+                        Upload Count: {{$count}}<br />
+                        {{-- Download Count: 0<br /> --}}
                         Registered: {{ \Carbon\Carbon::parse(auth()->user()->created_at)->format('d,M,Y') }}<br />
                     </div>
                 </div>
@@ -49,57 +49,55 @@
                 <h3 class="mb-4 d-md-flex justify-content-md-between">
                     Recent Uploads
 
-                    <div class="dropdown mt-3 mt-md-0">
-                        <a class="btn btn-theme btn-block dropdown-toggle" href="#" data-toggle="dropdown">
-                            View All
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="../themese739.html?query=user:aCsLuZ">Themes</a>
-                            <a class="dropdown-item" href="../splashese739.html?query=user:aCsLuZ">Splashes</a>
-                            <a class="dropdown-item" href="../badgese739.html?query=user:aCsLuZ">Badges</a>
-                        </div>
-                    </div>
                 </h3>
 
 
 
                 <div class="theme-grid row justify-content-center">
+                    @foreach ($themes as $theme)
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="theme-grid-item card bg- mb-3">
                             <div class="card-header">
-                                <a href="../item/98372.html" data-toggle="tooltip"
-                                    title="Suitcase - Inanimate Insanity">Suitcase - Inanimate Insanity</a>
+                                <a href="{{'themedetails/'.$theme->id}}" data-toggle="tooltip"
+                                    title="{{$theme->name}}">{{$theme->name}}</a>
                             </div>
                             <div class="card-body" style="position: relative;">
-                                <a href="../item/98372.html">
+                                <a href="{{'themedetails/'.$theme->id}}">
                                     <div class="d-flex justify-content-around align-items-center" data-qr-code>
                                         <div class="text-center">
                                             <p>Scan QR Code</p>
-                                            <p><img width="180" src="../download/98372/qr.png" src="QR%20Code.html" />
+                                            <p><img width="180" src="{{asset('storage/'.$theme->qr)}}" />
                                             </p>
                                             <p>Click for more details</p>
                                         </div>
                                     </div>
-                                    <img src="../img/preview_transparent.png"
-                                        class="img-fluid d-block mx-auto img-item-preview" alt=""
-                                        style="background-image: url(../download/98372/preview.png);" />
+                                    <img src="{{asset($theme->preview)}}"
+                                        class="img-fluid d-block mx-auto img-item-preview" alt="" style="height:150px !important;"
+                                        style="background-image: url({{asset($theme->preview)}});" />
+                                    <img src="{{asset($theme->preview2)}}"
+                                        class="img-fluid d-block mx-auto img-item-preview" alt="" style="height:150px !important;"
+                                        style="background-image: url({{asset($theme->preview2)}});" />
                                 </a>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
                                 <div class="mx-1">
-                                    <a class="btn btn-sm btn-theme"
-                                        href="../download/Suitcase%20-%20Inanimate%20Insanity%20by%20aCsLuZ%20(98372).zip"
-                                        target="_blank" title="Download" data-toggle="tooltip">2 <i
-                                            class="fa fa-fw fa-download"></i></a>
+                                    <a class="btn btn-sm btn-theme download-btn" data-id="{{ $theme->id }}"
+                                        href="{{ asset($theme->body) }}" target="_blank" title="Download" data-toggle="tooltip">
+                                        <span data-download-count="{{ $theme->id }}">{{ $theme->downloads }}</span>
+                                        <i class="fa fa-fw fa-download"></i>
+                                    </a>
                                 </div>
                                 <div class="mx-1">
-                                    <a class="btn btn-sm btn-danger" href="#" data-like="98372" title="Like"
-                                        data-toggle="tooltip"><span data-count>0</span> <i
-                                            class="fa fa-fw fa-heart-o"></i></a>
+                                    <a class="btn btn-sm btn-danger like-btn" data-id="{{ $theme->id }}" href="#" title="Like"
+                                        data-toggle="tooltip">
+                                        <span data-like-count="{{ $theme->id }}">{{ $theme->likes }}</span>
+                                        <i class="fa fa-fw fa-heart-o"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
 
             </div>
