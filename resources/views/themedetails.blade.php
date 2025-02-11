@@ -24,18 +24,18 @@
 						<div style="background-image: url({{asset('storage/'.$data[0]->qr)}}) !important; background-repeat: no-repeat !important; background-position:center !important; background-size:contain !important;" data-qr-code></div>
 						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview)}}"
 							alt="{{$data[0]->name}}" />
-						<img id="preview-image" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview2)}}"
+						<img id="preview-image2" class="img-fluid mb-3 mb-md-0" src="{{asset($data[0]->preview2)}}"
 							alt="{{$data[0]->name}}" />
 					</div>
 				</div>
 
 				<div class="mb-3">
-					<div class="btn-group d-flex mb-1" role="group">
+					{{-- <div class="btn-group d-flex mb-1" role="group">
 						<button type="button" class="btn btn-theme w-100" data-preview="preview">Uploaded
 							Preview</button>
 						<button type="button" class="btn btn-theme w-100" data-preview="preview/generated">Generated
 							Preview</button>
-					</div>
+					</div> --}}
 					<div class="btn-group d-flex mb-1" role="group">
 						<button type="button" class="btn btn-theme w-100" data-preview="preview/top">Top
 							Screen</button>
@@ -152,8 +152,12 @@
 							<div class="col-6">{{$data[0]->likes}} <i class="fa fa-fw fa-heart"></i></div>
 						</div>
 						<div class="row tr">
+							<div class="col-6">Dislikes</div>
+							<div class="col-6">{{$data[0]->dislikes}} <i class="fa fa-fw fa-heart"></i></div>
+						</div>
+						<div class="row tr">
 							<div class="col-12">
-								<a href="../themeseeea.html?query=tag:anime"><span
+								<a href="#"><span
 										class="badge badge-primary bg-theme p-1">{{$data[0]->tags}}</span></a>
 								
 							</div>
@@ -161,7 +165,7 @@
 					</div>
 				</div>
 
-				<div class="card mb-3">
+				{{-- <div class="card mb-3">
 					<div class="btn btn-outline-warning" onclick="jQuery('.report-container').slideToggle();">
 						Report Content
 					</div>
@@ -169,10 +173,10 @@
 						<div class="alert alert-info mb-0">To report content, please <a href="../log-in.html">log
 								in</a>.</div>
 					</div>
-				</div>
+				</div> --}}
 
 
-				<div class="card comments" data-comment-card>
+				{{-- <div class="card comments" data-comment-card>
 
 					<input type="hidden" data-item-id value="33790" />
 
@@ -199,7 +203,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>

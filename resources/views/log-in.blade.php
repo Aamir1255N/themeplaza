@@ -20,6 +20,7 @@
             <button class="btn btn-danger" data-dismiss="alert">&times;</button>
         </div>
     @endif
+   
     </div>
     <div class="container">
         <div class="row">
@@ -50,7 +51,7 @@
                     </div>
                 
                     <input type="submit" name="submit" class="btn btn-theme" value="Login" />
-                    {{-- <a class="btn btn-info" href="{{ url('/reset-password') }}">Forgot Password</a> --}}
+                    <a class="btn btn-info" href="{{ route('password.request') }}">Forgot Password</a>
               
                 </form>
                 

@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                
+{{--                 
                 <div class="card mb-4">
                     <div class="card-body">
                         <h4 class="card-title">Site Settings</h4>
@@ -58,7 +58,7 @@
                         type="submit" name="site_submit" value="Update">
                     </div>
                 </div>
-                
+                 --}}
                 <form method="post" action='changepassword'>
                     @csrf
                     <div class="card mb-4">
@@ -141,7 +141,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card bg-success mb-3">
+                {{-- <div class="card bg-success mb-3">
                     <div class="card-body ">
                         <h4 class="card-title">Accepted Submissions</h4>
                         No submissions to display.
@@ -158,7 +158,7 @@
                         <h4 class="card-title">Rejected Submissions</h4>
                         No submissions to display.
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 

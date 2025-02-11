@@ -24,17 +24,17 @@ class HomeController extends Controller
     
         // Sorting Condition
         if ($request->has("sort")) {
-            if ($request->sort == "Newest") {
+            if ($request->sort == "newest") {
                 $themes->orderBy('created_at', 'desc');
-            } elseif ($request->sort == "Most Downloaded") {
+            } elseif ($request->sort == "most-downloaded") {
                 $themes->orderBy('downloads', 'desc');
-            } elseif ($request->sort == "Most Liked") {
+            } elseif ($request->sort == "most-liked") {
                 $themes->orderBy('likes', 'desc');
             }
         }
     
         // Apply Pagination (10 items per page)
-        $themes = $themes->paginate(1);
+        $themes = $themes->paginate(8);
     
         return view("index", ["themes" => $themes]);
     }

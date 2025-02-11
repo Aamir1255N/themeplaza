@@ -120,24 +120,62 @@ class themesController extends Controller
   }
 
   // ✅ Like toggle karne ka function
-  public function toggleLike($id)
-  {
-      $theme = Themes::findOrFail($id);
+  public function handleVote($id, Request $request)
+{
+    $theme = Themes::findOrFail($id);
+    $action = $request->input('action'); // 'like' or 'dislike'
 
-      if (session()->has('liked_themes') && in_array($id, session('liked_themes'))) {
-          // Agar pehle like kiya tha toh unlike karein
-          $theme->likes -= 1;
-          session()->put('liked_themes', array_diff(session('liked_themes'), [$id])); // Session se remove karein
-      } else {
-          // Naya like add karein
-          $theme->likes += 1;
-          session()->push('liked_themes', $id);
-      }
+    // Session mein user ke votes track karein
+    $likedThemes = session('liked_themes', []);
+    $dislikedThemes = session('disliked_themes', []);
 
-      $theme->save();
+    if ($action === 'like') {
+        // Agar pehle like kiya hai toh unlike karein
+        if (in_array($id, $likedThemes)) {
+            $theme->likes -= 1;
+            $likedThemes = array_diff($likedThemes, [$id]);
+        } else {
+            // Naya like add karein
+            $theme->likes += 1;
+            $likedThemes[] = $id;
 
-      return response()->json(['likes' => $theme->likes]); // AJAX ke liye response
-  }
+            // Agar pehle dislike kiya hai toh dislike remove karein
+            if (in_array($id, $dislikedThemes)) {
+                $theme->dislikes -= 1;
+                $dislikedThemes = array_diff($dislikedThemes, [$id]);
+            }
+        }
+    } elseif ($action === 'dislike') {
+        // Agar pehle dislike kiya hai toh undislike karein
+        if (in_array($id, $dislikedThemes)) {
+            $theme->dislikes -= 1;
+            $dislikedThemes = array_diff($dislikedThemes, [$id]);
+        } else {
+            // Naya dislike add karein
+            $theme->dislikes += 1;
+            $dislikedThemes[] = $id;
+
+            // Agar pehle like kiya hai toh like remove karein
+            if (in_array($id, $likedThemes)) {
+                $theme->likes -= 1;
+                $likedThemes = array_diff($likedThemes, [$id]);
+            }
+        }
+    }
+
+    // Session update karein
+    session(['liked_themes' => $likedThemes]);
+    session(['disliked_themes' => $dislikedThemes]);
+
+    // Database mein save karein
+    $theme->save();
+
+    // AJAX ke liye response
+    return response()->json([
+        'likes' => $theme->likes,
+        'dislikes' => $theme->dislikes
+    ]);
+}
   function createcategory(Request $req){
     $category = new category;
     $category->name = $req->category_name;

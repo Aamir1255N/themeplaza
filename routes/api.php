@@ -10,5 +10,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 Route::get('/themes/download/{file}', [themesController::class, 'download'])->name('themes.download');
 Route::post('/theme/download/{id}', [themesController::class, 'incrementDownload'])->name('theme.download');
-Route::post('/theme/like/{id}', [themesController::class, 'toggleLike'])->name('theme.like');
+// Route::post('/theme/like/{id}', [themesController::class, 'toggleLike'])->name('theme.like');
+Route::post('/theme/vote/{id}', [ThemesController::class, 'handleVote'])->name('theme.vote');
 Route::get('/category', [HomeController::class, 'getcategory']);

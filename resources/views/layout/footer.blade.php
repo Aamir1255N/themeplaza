@@ -75,36 +75,82 @@
 
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const likeButtons = document.querySelectorAll('.like-btn');
+    //     document.addEventListener('DOMContentLoaded', function() {
+//     const likeButtons = document.querySelectorAll('.like-btn');
 
+//     likeButtons.forEach(button => {
+//         button.addEventListener('click', async function(e) {
+//             e.preventDefault();
+//             const themeId = button.getAttribute('data-id');
+
+//             try {
+//                 // AJAX request to toggle like
+//                 const response = await fetch(`{{url('/api/theme/like/${themeId}')}}`, {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+//                     },
+//                     body: JSON.stringify({}) // Empty body for this request
+//                 });
+
+//                 if (response.ok) {
+//                     const data = await response.json();
+//                     document.querySelector(`[data-like-count="${themeId}"]`).textContent = data.likes;
+//                 } else {
+//                     console.error('Error while toggling like');
+//                 }
+//             } catch (error) {
+//                 console.error('Error:', error);
+//             }
+//         });
+//     });
+// });
+document.addEventListener('DOMContentLoaded', function() {
+    const likeButtons = document.querySelectorAll('.like-btn');
+    const dislikeButtons = document.querySelectorAll('.dislike-btn');
+
+    // Thumbs Up (Like) Button
     likeButtons.forEach(button => {
         button.addEventListener('click', async function(e) {
             e.preventDefault();
             const themeId = button.getAttribute('data-id');
-
-            try {
-                // AJAX request to toggle like
-                const response = await fetch(`{{url('/api/theme/like/${themeId}')}}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify({}) // Empty body for this request
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    document.querySelector(`[data-like-count="${themeId}"]`).textContent = data.likes;
-                } else {
-                    console.error('Error while toggling like');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            await handleVote(themeId, 'like');
         });
     });
+
+    // Thumbs Down (Dislike) Button
+    dislikeButtons.forEach(button => {
+        button.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const themeId = button.getAttribute('data-id');
+            await handleVote(themeId, 'dislike');
+        });
+    });
+
+    // Handle Vote Function
+    async function handleVote(themeId, action) {
+        try {
+            const response = await fetch(`{{ url('/api/theme/vote/${themeId}') }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ action: action }) // Send action (like/dislike)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.querySelector(`[data-like-count="${themeId}"]`).textContent = data.likes;
+                document.querySelector(`[data-dislike-count="${themeId}"]`).textContent = data.dislikes;
+            } else {
+                console.error('Error while voting');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 });
 
 </script>

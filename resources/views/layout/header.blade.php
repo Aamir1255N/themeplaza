@@ -18,25 +18,60 @@
     <title>Themes | High Flying Themes</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logos/logo.png') }}" />
     <link href="{{ asset('assets/css/bootstrap.mindb44.css?1544224878') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             background: white !important;
             color: #388a9f !important;
         }
-        .bg-theme{
+
+        .bg-theme {
             background: #388a9f !important;
             color: white !important;
         }
+
         .btn-theme {
-            border:1px solid #388a9f;
+            border: 1px solid #388a9f;
             background: #388a9f !important;
             color: white !important;
             transition: 0.5s ease;
         }
 
         .btn-theme:hover {
-            border:1px solid #388a9f;
+            border: 1px solid #388a9f;
             background: #388a9f !important;
+            color: white !important;
+        }
+
+        .alert-success {
+            background: #05be05 !important;
+            color: white !important;
+        }
+
+        .alert-success b {
+            background: transparent !important;
+            color: white !important;
+        }
+
+        .alert-success button {
+            background: transparent !important;
+            color: white !important;
+        }
+
+        .alert-danger {
+            background: #f10d0d !important;
+            color: white !important;
+        }
+
+        .alert-danger b {
+            background: transparent !important;
+            color: white !important;
+        }
+
+        .alert-danger button {
+            background: transparent !important;
             color: white !important;
         }
     </style>
@@ -60,7 +95,8 @@
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item"><a class="nav-link" href="{{ auth()->check() ? 'upload' : 'login' }}">Upload</a>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ auth()->check() ? '/upload' : '/login' }}">Upload</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/faq">FAQ/Rules/Approval Info</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://discord.gg/Pz25PX5vr5">Join Our Discord!</a>
@@ -71,20 +107,20 @@
                 <!-- Right: Register/Login or Profile -->
                 <ul class="navbar-nav ">
                     @if (!auth()->check())
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                     @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Well Come {{ auth()->user()->name }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ '/account' }}">Account</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ '/logout' }}">Logout</a>
-                            </div>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Well Come {{ auth()->user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ '/account' }}">Account</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ '/logout' }}">Logout</a>
+                        </div>
+                    </li>
                     @endif
                 </ul>
             </div>

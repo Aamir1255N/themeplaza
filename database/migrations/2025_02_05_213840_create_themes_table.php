@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string("uploader",100);
             $table->integer("category_id");
             $table->integer("downloads");
-            $table->integer("likes");
+            $table->integer('likes')->default(0);
+            $table->integer('dislikes')->default(0);
             $table->string("youtube_link",200)->nullable();
             $table->timestamps();
         });
