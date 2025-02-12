@@ -118,6 +118,13 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ '/account' }}">Account</a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ '/profile' }}">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            @if (auth()->user()->role == 'admin')
+                            <a class="dropdown-item" href="{{ '/admin' }}">Admin Panel</a>
+                            <div class="dropdown-divider"></div>
+                            @endif
+
                             <a class="dropdown-item" href="{{ '/logout' }}">Logout</a>
                         </div>
                     </li>
